@@ -1,7 +1,90 @@
 <!DOCTYPE html>
-<html>
-<html lang="en">
+<html lang="id">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Total Pengunjung</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      position: relative;
+    }
+    .admin-access {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    #adminIcon {
+      font-size: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .password-prompt {
+      display: none;
+      margin-top: 10px;
+    }
+    #password {
+      padding: 5px;
+    }
+    .visitor-count {
+      margin-top: 20px;
+    }
+    #totalVisitors {
+      color: red;
+    }
+    #errorMessage {
+      color: red;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-access">
+    <button id="adminIcon" onclick="showPasswordPrompt()">👁️❔</button>
+  </div>
+  <div id="passwordPrompt" class="password-prompt">
+    <label for="password">Masukkan Sandi Admin:</label>
+    <input type="password" id="password" />
+    <button onclick="checkPassword()">Masuk</button>
+    <p id="errorMessage">Sandi salah, coba lagi.</p>
+  </div>
+  <div id="visitorCount" class="visitor-count" style="display: none;">
+    <h2>Total Pengunjung: <span id="totalVisitors">0</span></h2>
+  </div>
+  <script>
+    // Ambil total pengunjung dari localStorage, jika ada, jika tidak set 0
+    let totalVisitors = localStorage.getItem('totalVisitors') ? parseInt(localStorage.getItem('totalVisitors')) : 0;
+    const visitorKey = 'hasVisited';
+
+    // Cek apakah pengunjung sudah pernah mengunjungi sebelumnya
+    if (!localStorage.getItem(visitorKey)) {
+      totalVisitors++;
+      localStorage.setItem('totalVisitors', totalVisitors);
+      localStorage.setItem(visitorKey, 'true'); // Tandai pengunjung telah datang
+    }
+
+    function showPasswordPrompt() {
+      document.getElementById('passwordPrompt').style.display = 'block';
+    }
+
+    function checkPassword() {
+      const password = document.getElementById('password').value;
+      const correctPassword = 'nias123';
+
+      if (password === correctPassword) {
+        document.getElementById('visitorCount').style.display = 'block';
+        document.getElementById('totalVisitors').innerText = totalVisitors;
+        document.getElementById('passwordPrompt').style.display = 'none';
+      } else {
+        document.getElementById('errorMessage').style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
+  </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cek khodam</title>
@@ -187,7 +270,7 @@ body {
         });
     </script>
     <footer>
-    <p>By <a href="https://t.me/@yzzyourfav" target="_blank">Grezz+</a>Xploit</p><p>Follow Instagram <a href="https://www.instagram.com/ni4sss?igsh=MWYxa2VuZ3BqYzBpOA==" target="_blank">Admin</a></p>
+ <p>By <a href="https://t.me/@yzzyourfav" target="_blank">Grezz+</a>Xploit</p><p>Follow Instagram <a href="https://www.instagram.com/ni4sss?igsh=MWYxa2VuZ3BqYzBpOA==" target="_blank">Admin</a></p>
 </footer>
 
 </body>
